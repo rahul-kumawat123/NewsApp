@@ -29,7 +29,7 @@ class ItemAdapter(private val context: Context, private val dataList : List<Data
 
             Glide.with(context)
                 .load(dataList[position].image)
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.no_image_available)
                 .into(image)
         }
     }
