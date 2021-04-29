@@ -8,13 +8,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
-import org.intellij.lang.annotations.Language
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,37 +22,43 @@ class MainActivity : AppCompatActivity() {
     var newsList =  ArrayList<DataModel>()
     private var searchBar : String = ""
     private var categoryBar : String = ""
+    private var languageBar : String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val bundle: Bundle ?= intent.extras
-//        searchBar = bundle?.get("keywords") as String
-//        Log.i("SearchBar" , searchBar)
 
+        val bundleSearch=intent
+        when {
+            bundleSearch.getBooleanExtra("checkKeyword",false) -> {
+                searchBar= bundleSearch.getStringExtra("keywords").toString()
+                createProgressDialog()
+                setupUI()
+                showSearchNews()
 
+            }
+            bundleSearch.getBooleanExtra("checkCategory" , false) -> {
+                categoryBar = bundleSearch.getStringExtra("categories").toString()
+                createProgressDialog()
+                setupUI()
+                showCategorisedNews()
+            }
+            bundleSearch.getBooleanExtra("checkLanguage" , false) -> {
+                languageBar = bundleSearch.getStringExtra("languages").toString()
+                createProgressDialog()
+                setupUI()
+                showLanguageWiseNews()
 
-        val bundleSearch = intent
-        if(bundleSearch.getBooleanExtra("check" , false)){
-            searchBar = bundleSearch.getStringExtra("keywords").toString()
-            createProgressDialog()
-            setupUI()
-            showSearchNews()
-        }else{
-            categoryBar = bundleSearch.getStringExtra("categories").toString()
-            createProgressDialog()
-            setupUI()
-            showCategorisedNews()
+            }
+            else -> {
+                createProgressDialog()
+                setupUI()
+                showNews()
+            }
         }
 
-        createProgressDialog()
-        setupUI()
-        showNews()
-
-       /* val bundle : Bundle? = intent.extras
-        categoryBar = bundle?.get("categories") as String*/
 
         floatingActionButton.setOnClickListener {
             showToast("Floating Button Clicked")
@@ -65,17 +68,36 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-//    override fun onRestart() {
-//        super.onRestart()
-//
-//        recyclerView.removeAllViewsInLayout()
-//
-//    }
+    private fun showLanguageWiseNews() {
+        // progressDialog.show()
+
+        val call = ApiClient.getClient.getLanguageData(KEY , languageBar )
+        //Log.i("ApiClient" , call.toString())
+        call.enqueue(object : Callback<ResponseDataModel>{
+            override fun onResponse(
+                    call: Call<ResponseDataModel>,
+                    response: Response<ResponseDataModel>
+            ) {
+                if(response.isSuccessful){
+                    newsList.addAll(response.body()?.data ?: ArrayList())
+                    recyclerView.adapter?.notifyDataSetChanged()
+                    Log.e("Data", "Data is ${response.body()}\n\n")
+                }
+                //progressDialog.dismiss()
+            }
+
+            override fun onFailure(call: Call<ResponseDataModel>, t: Throwable) {
+                // progressDialog.dismiss()
+                Log.e("Failure","Error is ${t.localizedMessage}")
+                showToast("Some Error Occurred while fetching data")
+            }
+        })
+    }
 
     private fun showCategorisedNews() {
        // progressDialog.show()
 
-        val call = ApiClient.getClient.getCategoriesData(KEY , "en" , categoryBar )
+        val call = ApiClient.getClient.getCategorisedData(KEY , "en" , categoryBar )
         //Log.i("ApiClient" , call.toString())
         call.enqueue(object : Callback<ResponseDataModel>{
             override fun onResponse(

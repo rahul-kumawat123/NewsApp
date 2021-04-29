@@ -15,6 +15,7 @@ import java.util.*
 class MenuActivity : AppCompatActivity() {
 
     private  var categoryValue = ""
+    private  var languageValue = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,26 +24,26 @@ class MenuActivity : AppCompatActivity() {
 
         searchKeywordNews()
 
-        searchCustomNewsBTN.setOnClickListener {
+        /*searchCustomNewsBTN.setOnClickListener {
             showCustomNews()
-        }
+        }*/
 
 
     }
 
-   fun showCustomNews(){
-        autoCompleteTextView_Categories.setOnItemClickListener { parent, view, position, id ->
-            val categorySelected = parent.getItemAtPosition(position)
-            categoryValue = if (categorySelected.equals("")){
-                "general"
-            }else{
-                categorySelected.toString().toLowerCase()
-            }
-            val intentCategoryBar = Intent(this , MainActivity::class.java)
-            intentCategoryBar.putExtra("categories" , categoryValue)
-            startActivity(intentCategoryBar)
-        }
-    }
+//   fun showCustomNews(){
+//        autoCompleteTextView_Categories.setOnItemClickListener { parent, view, position, id ->
+//            val categorySelected = parent.getItemAtPosition(position)
+//            categoryValue = if (categorySelected.equals("")){
+//                "general"
+//            }else{
+//                categorySelected.toString().toLowerCase()
+//            }
+//            val intentCategoryBar = Intent(this , MainActivity::class.java)
+//            intentCategoryBar.putExtra("categories" , categoryValue)
+//            startActivity(intentCategoryBar)
+//        }
+//    }
 
 
     private fun searchKeywordNews() {
@@ -51,7 +52,8 @@ class MenuActivity : AppCompatActivity() {
         searchBTN.setOnClickListener {
                 val intentSearchBar = Intent(this , MainActivity::class.java)
                 intentSearchBar.putExtra("keywords" , keywordSearch)
-                intentSearchBar.putExtra("check" , true)
+                intentSearchBar.putExtra("checkKeyword" , true)
+//                intentSearchBar.putExtra("flag" ,  1)
                 startActivity(intentSearchBar)
         }
     }
@@ -70,9 +72,22 @@ class MenuActivity : AppCompatActivity() {
         autoCompleteTextView_Categories.setAdapter(arrayAdapter)
 
         autoCompleteTextView_Categories.setOnItemClickListener { parent, view, position, id ->
-            showToast("${parent.getItemAtPosition(position)}" +
+
+            val categorySelected = parent.getItemAtPosition(position)
+            categoryValue = if (categorySelected.equals("")){
+                "general"
+            }else{
+                categorySelected.toString().toLowerCase()
+            }
+            val intentCategoryBar = Intent(this , MainActivity::class.java)
+            intentCategoryBar.putExtra("categories" , categoryValue)
+            intentCategoryBar.putExtra("checkCategory" , true)
+//            intentCategoryBar.putExtra("flag" , 3)
+            startActivity(intentCategoryBar)
+            showToast("$categorySelected" +
                     " News Category is Selected")
         }
+
     }
 
     private fun inflateLanguageDropDownData() {
@@ -84,7 +99,35 @@ class MenuActivity : AppCompatActivity() {
 
         //to retrieve selected data
         autoCompleteTextView_Languages.setOnItemClickListener { parent, view, position, id ->
-            showToast("${parent.getItemAtPosition(position)} " +
+
+            val languageSelected = parent.getItemAtPosition(position)
+            if (languageSelected.equals("")){
+               languageValue =  "en"
+            }else{
+                when (languageSelected){
+                    "Arabic" -> languageValue = "ar"
+                    "English" -> languageValue = "en"
+                    "German" -> languageValue = "de"
+                    "Spanish" -> languageValue = "es"
+                    "French" -> languageValue = "fr"
+                    "Hebrew" -> languageValue = "he"
+                    "Italian" -> languageValue = "it"
+                    "Dutch" -> languageValue = "nl"
+                    "Norwegian" -> languageValue = "no"
+                    "Portuguese" -> languageValue = "pt"
+                    "Russian" -> languageValue = "ru"
+                    "Swedish" -> languageValue = "se"
+                    "Chinese" -> languageValue = "zh"
+                }
+            }
+
+            val intentLanguageBar = Intent(this , MainActivity::class.java)
+            intentLanguageBar.putExtra("languages" , languageValue)
+            intentLanguageBar.putExtra("checkLanguage" , true)
+//            intentLanguageBar.putExtra("flag" , 2)
+            startActivity(intentLanguageBar)
+
+            showToast("$languageSelected " +
                     " Language is Selected")
         }
     }
