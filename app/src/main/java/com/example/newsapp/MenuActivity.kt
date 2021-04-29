@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_menu.*
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.isNotEmpty
@@ -33,15 +34,14 @@ class MenuActivity : AppCompatActivity() {
 
 
     private fun searchKeywordNews() {
-        val keywordSearch = search_news.query.toString()
-
-        searchBTN.setOnClickListener {
-                val intentSearchBar = Intent(this , MainActivity::class.java)
-                intentSearchBar.putExtra("keywords" , keywordSearch)
-                intentSearchBar.putExtra("checkKeyword" , true)
-//                intentSearchBar.putExtra("flag" ,  1)
-                startActivity(intentSearchBar)
-        }
+        searchBTN.setOnClickListener(View.OnClickListener {
+            val customSearch=search_news.query.toString()
+            Toast.makeText(this,customSearch, Toast.LENGTH_SHORT).show()
+            val intentSearchBar=Intent(this,MainActivity::class.java)
+            intentSearchBar.putExtra("keywords",customSearch)
+            intentSearchBar.putExtra("checkKeyword",true)
+            startActivity(intentSearchBar)
+        })
     }
 
     override fun onResume() {

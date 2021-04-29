@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity() {
                 createProgressDialog()
                 setupUI()
                 showLanguageWiseNews()
-
             }
             else -> {
                 createProgressDialog()
@@ -69,7 +68,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLanguageWiseNews() {
-        // progressDialog.show()
+         progressDialog.show()
 
         val call = ApiClient.getClient.getLanguageData(KEY , languageBar )
         //Log.i("ApiClient" , call.toString())
@@ -83,11 +82,11 @@ class MainActivity : AppCompatActivity() {
                     recyclerView.adapter?.notifyDataSetChanged()
                     Log.e("Data", "Data is ${response.body()}\n\n")
                 }
-                //progressDialog.dismiss()
+                progressDialog.dismiss()
             }
 
             override fun onFailure(call: Call<ResponseDataModel>, t: Throwable) {
-                // progressDialog.dismiss()
+                 progressDialog.dismiss()
                 Log.e("Failure","Error is ${t.localizedMessage}")
                 showToast("Some Error Occurred while fetching data")
             }
@@ -95,7 +94,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showCategorisedNews() {
-       // progressDialog.show()
+        progressDialog.show()
 
         val call = ApiClient.getClient.getCategorisedData(KEY , "en" , categoryBar )
         //Log.i("ApiClient" , call.toString())
@@ -109,11 +108,11 @@ class MainActivity : AppCompatActivity() {
                     recyclerView.adapter?.notifyDataSetChanged()
                     Log.e("Data", "Data is ${response.body()}\n\n")
                 }
-                //progressDialog.dismiss()
+                progressDialog.dismiss()
             }
 
             override fun onFailure(call: Call<ResponseDataModel>, t: Throwable) {
-               // progressDialog.dismiss()
+                progressDialog.dismiss()
                 Log.e("Failure","Error is ${t.localizedMessage}")
                 showToast("Some Error Occurred while fetching data")
             }
@@ -121,30 +120,55 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSearchNews() {
-        //progressDialog.show()
 
-        val call = ApiClient.getClient.getSearchData(KEY , "en" , searchBar)
-        //Log.i("ApiClient" , call.toString())
-        call.enqueue(object : Callback<ResponseDataModel>{
-            @RequiresApi(Build.VERSION_CODES.N)
+        progressDialog.show()
+        val call = ApiClient.getClient.getSearchData(KEY, "en",searchBar)
+        call.enqueue(object : Callback<ResponseDataModel> {
             override fun onResponse(
-                call: Call<ResponseDataModel>,
-                response: Response<ResponseDataModel>
+                    call: Call<ResponseDataModel>,
+                    response: Response<ResponseDataModel>
             ) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     newsList.addAll(response.body()?.data ?: ArrayList())
                     recyclerView.adapter?.notifyDataSetChanged()
                     Log.e("Data", "Data is ${response.body()}\n\n")
                 }
-               // progressDialog.dismiss()
+                progressDialog.dismiss()
             }
 
             override fun onFailure(call: Call<ResponseDataModel>, t: Throwable) {
-               // progressDialog.dismiss()
-                Log.e("Failure","Error is ${t.localizedMessage}")
+                 progressDialog.dismiss()
+                Log.e("Failure", "Error is ${t.localizedMessage}")
                 showToast("Some Error Occurred while fetching data")
             }
         })
+
+
+//
+//        progressDialog.show()
+//
+//        val call = ApiClient.getClient.getSearchData(KEY , "en" , searchBar)
+//        //Log.i("ApiClient" , call.toString())
+//        call.enqueue(object : Callback<ResponseDataModel>{
+//            @RequiresApi(Build.VERSION_CODES.N)
+//            override fun onResponse(
+//                call: Call<ResponseDataModel>,
+//                response: Response<ResponseDataModel>
+//            ) {
+//                if(response.isSuccessful){
+//                    newsList.addAll(response.body()?.data ?: ArrayList())
+//                    recyclerView.adapter?.notifyDataSetChanged()
+//                    Log.e("Data", "Data is ${response.body()}\n\n")
+//                }
+//               progressDialog.dismiss()
+//            }
+//
+//            override fun onFailure(call: Call<ResponseDataModel>, t: Throwable) {
+//                progressDialog.dismiss()
+//                Log.e("Failure","Error is ${t.localizedMessage}")
+//                showToast("Some Error Occurred while fetching data")
+//            }
+//        })
     }
 
     private fun setupUI() {
@@ -159,7 +183,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showNews() {
 
-        //progressDialog.show()
+        progressDialog.show()
 
         val call = ApiClient.getClient.getData(KEY, LANGUAGE )
         //Log.i("ApiClient" , call.toString())
@@ -173,11 +197,11 @@ class MainActivity : AppCompatActivity() {
                     recyclerView.adapter?.notifyDataSetChanged()
                     Log.e("Data", "Data is ${response.body()}\n\n")
                 }
-                //progressDialog.dismiss()
+                progressDialog.dismiss()
             }
 
             override fun onFailure(call: Call<ResponseDataModel>, t: Throwable) {
-                //progressDialog.dismiss()
+                progressDialog.dismiss()
                 Log.e("Failure","Error is ${t.localizedMessage}")
                 showToast("Some Error Occurred while fetching data")
             }

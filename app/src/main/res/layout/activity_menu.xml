@@ -4,36 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
     tools:context=".MenuActivity">
 
     <SearchView
         android:id="@+id/search_news"
-        android:layout_width="213dp"
-        android:layout_height="58dp"
-        android:queryHint="Search Keywords"
-        android:inputType="text"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="70sp"
         android:iconifiedByDefault="false"
+        android:queryHint="Search for News"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.191"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.351"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.194" />
+        app:layout_constraintVertical_bias="0.061" />
 
     <Button
         android:id="@+id/searchBTN"
         android:layout_width="110dp"
         android:layout_height="63dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
         android:text="Search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toEndOf="@+id/search_news"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.196" />
+        app:layout_constraintVertical_bias="0.052" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout_Languages"
