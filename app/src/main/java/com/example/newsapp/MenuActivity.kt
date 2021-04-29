@@ -25,25 +25,11 @@ class MenuActivity : AppCompatActivity() {
         searchKeywordNews()
 
         /*searchCustomNewsBTN.setOnClickListener {
-            showCustomNews()
+
         }*/
 
 
     }
-
-//   fun showCustomNews(){
-//        autoCompleteTextView_Categories.setOnItemClickListener { parent, view, position, id ->
-//            val categorySelected = parent.getItemAtPosition(position)
-//            categoryValue = if (categorySelected.equals("")){
-//                "general"
-//            }else{
-//                categorySelected.toString().toLowerCase()
-//            }
-//            val intentCategoryBar = Intent(this , MainActivity::class.java)
-//            intentCategoryBar.putExtra("categories" , categoryValue)
-//            startActivity(intentCategoryBar)
-//        }
-//    }
 
 
     private fun searchKeywordNews() {
