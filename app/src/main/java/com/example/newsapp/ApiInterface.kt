@@ -39,5 +39,10 @@ interface ApiInterface {
 
     ):retrofit2.Call<ResponseDataModel>
 
+    @GET("news")
+    fun getCountryData(
+            @Query("access_key") key : String,
+            @Query("countries") country: String
 
+    ):retrofit2.Call<ResponseDataModel>
 }

@@ -16,6 +16,15 @@ data class DataModel(
     val url: String,
 
     @SerializedName("image")
-    val image: String
+    val image: String,
+
+    @SerializedName("sources")
+    val source: String,
+
+    @SerializedName("countries")
+    val country: String,
+
+    @SerializedName("published_at")
+    val time: String
 
 )

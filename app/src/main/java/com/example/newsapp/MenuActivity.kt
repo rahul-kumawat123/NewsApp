@@ -17,6 +17,7 @@ class MenuActivity : AppCompatActivity() {
 
     private  var categoryValue = ""
     private  var languageValue = ""
+    private  var countryValue = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,11 +51,91 @@ class MenuActivity : AppCompatActivity() {
         inflateLanguageDropDownData()
 
         inflateCategoriesDropDownData()
+
+        inflateCountriesDropDownData()
+    }
+
+    private fun inflateCountriesDropDownData() {
+        val countries = resources.getStringArray(R.array.countries)
+        val arrayAdapter = ArrayAdapter(applicationContext , R.layout.dropdown_item ,countries)
+        autoCompleteTextView_Countries.setAdapter(arrayAdapter)
+
+        autoCompleteTextView_Countries.setOnItemClickListener { parent, view, position, id ->
+
+            val countrySelected = parent.getItemAtPosition(position)
+            if (countrySelected.equals("")){
+                 countryValue = "us"
+            }else{
+                when(countrySelected) {
+
+                    "Argentina" -> countryValue = "ar"
+                    "Australia" -> countryValue = "au"
+                    "Austria" -> countryValue = "at"
+                    "Belgium" -> countryValue = "be"
+                    "Brazil" -> countryValue = "br"
+                    "Bulgaria" -> countryValue = "bg"
+                    "Canada" -> countryValue = "ca"
+                    "China" -> countryValue = "cn"
+                    "Colombia" -> countryValue = "co"
+                    "Czech Republic" -> countryValue = "cz"
+                    "Egypt" -> countryValue = "eg"
+                    "France" -> countryValue = "fr"
+                    "Germany" -> countryValue = "de"
+                    "Greece" -> countryValue = "gr"
+                    "Hong Kong" -> countryValue = "hk"
+                    "Hungary" -> countryValue = "hu"
+                    "India" -> countryValue = "in"
+                    "Indonesia" -> countryValue = "id"
+                    "Ireland" -> countryValue = "ie"
+                    "Israel" -> countryValue = "il"
+                    "Italy" -> countryValue = "it"
+                    "Japan" -> countryValue = "jp"
+                    "Latvia" -> countryValue = "lv"
+                    "Lithuania" -> countryValue = "lt"
+                    "Malaysia" ->  countryValue = "my"
+                    "Mexico" -> countryValue = "mx"
+                    "Morocco" -> countryValue = "ma"
+                    "Netherlands" -> countryValue = "nl"
+                    "New Zealand" ->  countryValue = "nz"
+                    "Nigeria" -> countryValue = "ng"
+                    "Norway" -> countryValue = "no"
+                    "Philippines" -> countryValue = "ph"
+                    "Poland" -> countryValue = "pl"
+                    "Portugal" -> countryValue = "pt"
+                    "Romania" -> countryValue = "ro"
+                    "Saudi Arabia" -> countryValue = "sa"
+                    "Serbia" -> countryValue = "rs"
+                    "Singapore" -> countryValue = "sg"
+                    "Slovakia"-> countryValue = "sk"
+                    "Slovenia" -> countryValue = "si"
+                    "South Africa" -> countryValue = "za"
+                    "South Korea" -> countryValue = "kr"
+                    "Sweden" -> countryValue = "se"
+                    "Switzerland" -> countryValue = "ch"
+                    "Taiwan" -> countryValue = "tw"
+                    "Thailand" -> countryValue = "th"
+                    "Turkey" -> countryValue = "tr"
+                    "UAE" -> countryValue = "ae"
+                    "Ukraine" -> countryValue = "ua"
+                    "United Kingdom" -> countryValue = "gb"
+                    "United States" -> countryValue = "us"
+                    "Venuzuela" -> countryValue = "ve"
+                }
+            }
+            val intentCountryBar = Intent(this , MainActivity::class.java)
+            intentCountryBar.putExtra("countries" , countryValue)
+            intentCountryBar.putExtra("checkCountry" , true)
+//            intentCategoryBar.putExtra("flag" , 3)
+            startActivity(intentCountryBar)
+            showToast("$countrySelected" +
+                    " Country is Selected")
+        }
+
     }
 
     private fun inflateCategoriesDropDownData() {
         val categories = resources.getStringArray(R.array.categories)
-        val arrayAdapter = ArrayAdapter(applicationContext , R.layout.dropdown_item_categories , categories)
+        val arrayAdapter = ArrayAdapter(applicationContext , R.layout.dropdown_item , categories)
         autoCompleteTextView_Categories.setAdapter(arrayAdapter)
 
         autoCompleteTextView_Categories.setOnItemClickListener { parent, view, position, id ->
@@ -78,7 +159,7 @@ class MenuActivity : AppCompatActivity() {
 
     private fun inflateLanguageDropDownData() {
         val languages = resources.getStringArray(R.array.languages)
-        val arrayAdapter = ArrayAdapter(applicationContext, R.layout.dropdown_item_languages , languages)
+        val arrayAdapter = ArrayAdapter(applicationContext, R.layout.dropdown_item , languages)
         autoCompleteTextView_Languages.setAdapter(arrayAdapter)
 
         //Log.i("languages" , "$languages")

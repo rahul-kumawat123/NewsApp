@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private var searchBar : String = ""
     private var categoryBar : String = ""
     private var languageBar : String = ""
+    private var countryBar : String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +52,12 @@ class MainActivity : AppCompatActivity() {
                 setupUI()
                 showLanguageWiseNews()
             }
+            bundleSearch.getBooleanExtra("checkCountry" ,  false) ->{
+                countryBar = bundleSearch.getStringExtra("countries").toString()
+                createProgressDialog()
+                setupUI()
+                showCountryWiseNews()
+            }
             else -> {
                 createProgressDialog()
                 setupUI()
@@ -65,6 +72,32 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun showCountryWiseNews() {
+        progressDialog.show()
+
+        val call = ApiClient.getClient.getCountryData(KEY , countryBar )
+        //Log.i("ApiClient" , call.toString())
+        call.enqueue(object : Callback<ResponseDataModel>{
+            override fun onResponse(
+                    call: Call<ResponseDataModel>,
+                    response: Response<ResponseDataModel>
+            ) {
+                if(response.isSuccessful){
+                    newsList.addAll(response.body()?.data ?: ArrayList())
+                    recyclerView.adapter?.notifyDataSetChanged()
+                    Log.e("Data", "Data is ${response.body()}\n\n")
+                }
+                progressDialog.dismiss()
+            }
+
+            override fun onFailure(call: Call<ResponseDataModel>, t: Throwable) {
+                progressDialog.dismiss()
+                Log.e("Failure","Error is ${t.localizedMessage}")
+                showToast("Some Error Occurred while fetching data")
+            }
+        })
     }
 
     private fun showLanguageWiseNews() {
