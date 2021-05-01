@@ -1,4 +1,4 @@
-package com.example.newsapp
+package com.example.newsapp.rests
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

@@ -1,17 +1,19 @@
-package com.example.newsapp
+package com.example.newsapp.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.OrientationEventListener
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.newsapp.R
+import com.example.newsapp.model.DataModel
 
-class ItemAdapter(private val context: Context, private val dataList : List<DataModel> ,
-                  private val listener: OnRecyclerViewItemClickListener) : RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
+class ItemAdapter(private val context: Context, private val dataList : List<DataModel>,
+                  private val listener: OnRecyclerViewItemClickListener
+) : RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
    inner class ViewHolder(view : View): RecyclerView.ViewHolder(view), View.OnClickListener {
 
@@ -28,7 +30,9 @@ class ItemAdapter(private val context: Context, private val dataList : List<Data
        override fun onClick(v: View?) {
            val position : Int = adapterPosition
            if (position != RecyclerView.NO_POSITION){
-               listener.onItemClicked(position , url_adapter = dataList[position].url)
+               listener.onItemClicked(position , url_adapter = dataList[position].url ,
+                   title_adapter = dataList[position].title , desc_adapter = dataList[position].description ,
+                   time_adapter = dataList[position].time)
            }
        }
    }
@@ -54,7 +58,8 @@ class ItemAdapter(private val context: Context, private val dataList : List<Data
     }
 
     interface OnRecyclerViewItemClickListener{
-        fun onItemClicked(position: Int ,url_adapter: String)
+        fun onItemClicked(position: Int ,url_adapter: String , title_adapter : String ,
+                          desc_adapter: String  , time_adapter: String)
     }
 
     override fun getItemCount(): Int = dataList.size

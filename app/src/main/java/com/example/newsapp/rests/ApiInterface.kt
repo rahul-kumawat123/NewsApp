@@ -1,9 +1,8 @@
-package com.example.newsapp
+package com.example.newsapp.rests
 
-import android.telecom.Call
+import com.example.newsapp.model.ResponseDataModel
 import retrofit2.http.GET
 import retrofit2.http.Query
-import java.util.logging.Filter
 
 interface ApiInterface {
     //end point of base_url

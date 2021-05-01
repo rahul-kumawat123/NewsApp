@@ -2,19 +2,20 @@ package com.example.newsapp
 
 import android.app.ProgressDialog
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.newsapp.adapter.ItemAdapter
+import com.example.newsapp.model.DataModel
+import com.example.newsapp.model.ResponseDataModel
+import com.example.newsapp.rests.ApiClient
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() ,ItemAdapter.OnRecyclerViewItemClickListener {
-
+class MainActivity : AppCompatActivity() , ItemAdapter.OnRecyclerViewItemClickListener {
     private val KEY = "e85ab53a52e9aa1ca6a1d01bf7bc3b23"
     private val LANGUAGE = "en"
     private lateinit var itemAdapter: ItemAdapter
@@ -110,8 +111,8 @@ class MainActivity : AppCompatActivity() ,ItemAdapter.OnRecyclerViewItemClickLis
         //Log.i("ApiClient" , call.toString())
         call.enqueue(object : Callback<ResponseDataModel>{
             override fun onResponse(
-                    call: Call<ResponseDataModel>,
-                    response: Response<ResponseDataModel>
+                call: Call<ResponseDataModel>,
+                response: Response<ResponseDataModel>
             ) {
                 if(response.isSuccessful){
                     newsList.addAll(response.body()?.data ?: ArrayList())
@@ -136,8 +137,8 @@ class MainActivity : AppCompatActivity() ,ItemAdapter.OnRecyclerViewItemClickLis
         //Log.i("ApiClient" , call.toString())
         call.enqueue(object : Callback<ResponseDataModel>{
             override fun onResponse(
-                    call: Call<ResponseDataModel>,
-                    response: Response<ResponseDataModel>
+                call: Call<ResponseDataModel>,
+                response: Response<ResponseDataModel>
             ) {
                 if(response.isSuccessful){
                     newsList.addAll(response.body()?.data ?: ArrayList())
@@ -162,8 +163,8 @@ class MainActivity : AppCompatActivity() ,ItemAdapter.OnRecyclerViewItemClickLis
         //Log.i("ApiClient" , call.toString())
         call.enqueue(object : Callback<ResponseDataModel>{
             override fun onResponse(
-                    call: Call<ResponseDataModel>,
-                    response: Response<ResponseDataModel>
+                call: Call<ResponseDataModel>,
+                response: Response<ResponseDataModel>
             ) {
                 if(response.isSuccessful){
                     newsList.addAll(response.body()?.data ?: ArrayList())
@@ -187,8 +188,8 @@ class MainActivity : AppCompatActivity() ,ItemAdapter.OnRecyclerViewItemClickLis
         val call = ApiClient.getClient.getSearchData(KEY, "en",searchBar)
         call.enqueue(object : Callback<ResponseDataModel> {
             override fun onResponse(
-                    call: Call<ResponseDataModel>,
-                    response: Response<ResponseDataModel>
+                call: Call<ResponseDataModel>,
+                response: Response<ResponseDataModel>
             ) {
                 if (response.isSuccessful) {
                     newsList.addAll(response.body()?.data ?: ArrayList())
@@ -250,10 +251,23 @@ class MainActivity : AppCompatActivity() ,ItemAdapter.OnRecyclerViewItemClickLis
         progressDialog.setCancelable(false)
     }
 
-    override fun onItemClicked(position: Int, url_adapter: String) {
+    override fun onItemClicked(
+        position: Int,
+        url_adapter: String,
+        title_adapter: String,
+        desc_adapter: String,
+        time_adapter: String
+    ) {
         val intent = Intent(this , WebActivity::class.java)
-        intent.putExtra("url_news" , url_adapter)
-        //showToast("sending url is $url_adapter")
+        intent.apply {
+            putExtra("url_news" , url_adapter)
+            putExtra("title_news" , title_adapter)
+            putExtra("desc_news" , desc_adapter)
+//            putExtra("author_news" , author_adapter )
+//            putExtra("source_news" , source_adapter)
+            putExtra("time_news" , time_adapter)
+        }
+        //showToast("sending title is $title_adapter")
         startActivity(intent)
     }
 }
