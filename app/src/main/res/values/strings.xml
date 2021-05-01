@@ -82,4 +82,20 @@
         <item>Venuzuela</item>
     </string-array>
 
+    <string-array name="sources">
+        <item>CNN</item>
+        <item>BBC</item>
+        <item>Dailymail</item>
+        <item>Xtratime</item>
+        <item>BusinessToday</item>
+        <item>Mail</item>
+        <item>Metro</item>
+        <item>TheSun</item>
+    </string-array>
+
+    <string name="title_activity_web">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_bookmarks">Bookmarks</string>
+    <string name="title_notifications">Notifications</string>
+
 </resources>

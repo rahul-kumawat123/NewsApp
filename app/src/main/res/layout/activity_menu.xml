@@ -10,6 +10,7 @@
         android:id="@+id/search_news"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="70sp"
         android:iconifiedByDefault="false"
         android:queryHint="Search for News"
@@ -24,6 +25,7 @@
         android:id="@+id/searchBTN"
         android:layout_width="110dp"
         android:layout_height="63dp"
+        android:layout_marginTop="50dp"
         android:text="Search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,14 +41,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:hint="LANGUAGE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_news"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout_Categories"
         app:startIconDrawable="@drawable/ic_languages">
 
         <AutoCompleteTextView
@@ -65,14 +67,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:hint="CATEGORY"
-        app:startIconDrawable="@drawable/ic_category"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout_Languages">
+        app:layout_constraintTop_toBottomOf="@+id/search_news"
+        app:startIconDrawable="@drawable/ic_category">
 
         <AutoCompleteTextView
             android:id="@+id/autoCompleteTextView_Categories"
@@ -83,38 +85,21 @@
             android:text="General" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/searchCustomNewsBTN"
-        android:layout_width="197dp"
-        android:layout_height="99dp"
-        android:layout_marginStart="144dp"
-        android:layout_marginLeft="144dp"
-        android:layout_marginTop="193dp"
-        android:layout_marginEnd="144dp"
-        android:layout_marginRight="144dp"
-        android:layout_marginBottom="115dp"
-        android:text="Search Custom News"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout_Categories" />
-
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_Countries"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:hint="COUNTRY"
-        app:startIconDrawable="@drawable/ic_country"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout_Categories">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout_Languages"
+        app:startIconDrawable="@drawable/ic_country">
 
         <AutoCompleteTextView
             android:id="@+id/autoCompleteTextView_Countries"
@@ -123,6 +108,31 @@
             android:layout_weight="1"
             android:inputType="none"
             android:text="United States" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_Sources"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:hint="SOURCE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout_Countries"
+        app:startIconDrawable="@drawable/ic_source">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView_Sources"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="none"
+            android:text="BBC" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.NewsApp"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity
+            android:name=".WebActivity"
+            android:label="@string/title_activity_web"></activity>
         <activity android:name=".MenuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

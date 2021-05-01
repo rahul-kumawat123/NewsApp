@@ -18,6 +18,7 @@ class MenuActivity : AppCompatActivity() {
     private  var categoryValue = ""
     private  var languageValue = ""
     private  var countryValue = ""
+    private  var sourceValue = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,12 +26,6 @@ class MenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu)
 
         searchKeywordNews()
-
-        /*searchCustomNewsBTN.setOnClickListener {
-
-        }*/
-
-
     }
 
 
@@ -53,6 +48,33 @@ class MenuActivity : AppCompatActivity() {
         inflateCategoriesDropDownData()
 
         inflateCountriesDropDownData()
+
+        inflateSourcesDropDownData()
+    }
+
+    private fun inflateSourcesDropDownData() {
+        val sources = resources.getStringArray(R.array.sources)
+        val arrayAdapter = ArrayAdapter(applicationContext , R.layout.dropdown_item ,sources)
+        autoCompleteTextView_Sources.setAdapter(arrayAdapter)
+
+        autoCompleteTextView_Sources.setOnItemClickListener { parent, view, position, id ->
+
+            val sourceSelected = parent.getItemAtPosition(position)
+//           if (sourceSelected.equals("")){
+//               sourceValue =  "cnn"
+//            }else{
+//               sourceValue =  sourceSelected.toString().toLowerCase()
+//            }
+            sourceValue = sourceSelected.toString().toLowerCase()
+            val intentSourceBar = Intent(this , MainActivity::class.java)
+            intentSourceBar.putExtra("sources" , sourceValue)
+            intentSourceBar.putExtra("checkSource" , true)
+//            intentCategoryBar.putExtra("flag" , 4)
+            startActivity(intentSourceBar)
+            showToast("$sourceSelected" +
+                    " News Source is Selected")
+
+        }
     }
 
     private fun inflateCountriesDropDownData() {

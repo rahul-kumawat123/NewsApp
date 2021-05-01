@@ -45,4 +45,12 @@ interface ApiInterface {
             @Query("countries") country: String
 
     ):retrofit2.Call<ResponseDataModel>
+
+    @GET("news")
+    fun getSourceData(
+        @Query("access_key") key : String,
+        @Query("languages") lang: String,
+        @Query("sources") source: String
+
+        ):retrofit2.Call<ResponseDataModel>
 }

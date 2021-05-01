@@ -13,7 +13,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() ,ItemAdapter.OnRecyclerViewItemClickListener {
 
     private val KEY = "e85ab53a52e9aa1ca6a1d01bf7bc3b23"
     private val LANGUAGE = "en"
@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private var categoryBar : String = ""
     private var languageBar : String = ""
     private var countryBar : String = ""
+    private var sourceBar : String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +39,6 @@ class MainActivity : AppCompatActivity() {
                 createProgressDialog()
                 setupUI()
                 showSearchNews()
-
             }
             bundleSearch.getBooleanExtra("checkCategory" , false) -> {
                 categoryBar = bundleSearch.getStringExtra("categories").toString()
@@ -58,6 +58,12 @@ class MainActivity : AppCompatActivity() {
                 setupUI()
                 showCountryWiseNews()
             }
+            bundleSearch.getBooleanExtra("checkSource" ,  false) ->{
+            sourceBar = bundleSearch.getStringExtra("sources").toString()
+            createProgressDialog()
+            setupUI()
+            showSourceWiseNews()
+            }
             else -> {
                 createProgressDialog()
                 setupUI()
@@ -65,13 +71,36 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         floatingActionButton.setOnClickListener {
             showToast("Floating Button Clicked")
             startActivity(Intent(this , MenuActivity::class.java))
         }
+    }
 
+    private fun showSourceWiseNews() {
+        progressDialog.show()
 
+        val call = ApiClient.getClient.getSourceData(KEY, LANGUAGE , sourceBar )
+        //Log.i("ApiClient" , call.toString())
+        call.enqueue(object : Callback<ResponseDataModel>{
+            override fun onResponse(
+                call: Call<ResponseDataModel>,
+                response: Response<ResponseDataModel>
+            ) {
+                if(response.isSuccessful){
+                    newsList.addAll(response.body()?.data ?: ArrayList())
+                    recyclerView.adapter?.notifyDataSetChanged()
+                    Log.e("Data", "Data is ${response.body()}\n\n")
+                }
+                progressDialog.dismiss()
+            }
+
+            override fun onFailure(call: Call<ResponseDataModel>, t: Throwable) {
+                progressDialog.dismiss()
+                Log.e("Failure","Error is ${t.localizedMessage}")
+                showToast("Some Error Occurred while fetching data")
+            }
+        })
     }
 
     private fun showCountryWiseNews() {
@@ -175,33 +204,6 @@ class MainActivity : AppCompatActivity() {
                 showToast("Some Error Occurred while fetching data")
             }
         })
-
-
-//
-//        progressDialog.show()
-//
-//        val call = ApiClient.getClient.getSearchData(KEY , "en" , searchBar)
-//        //Log.i("ApiClient" , call.toString())
-//        call.enqueue(object : Callback<ResponseDataModel>{
-//            @RequiresApi(Build.VERSION_CODES.N)
-//            override fun onResponse(
-//                call: Call<ResponseDataModel>,
-//                response: Response<ResponseDataModel>
-//            ) {
-//                if(response.isSuccessful){
-//                    newsList.addAll(response.body()?.data ?: ArrayList())
-//                    recyclerView.adapter?.notifyDataSetChanged()
-//                    Log.e("Data", "Data is ${response.body()}\n\n")
-//                }
-//               progressDialog.dismiss()
-//            }
-//
-//            override fun onFailure(call: Call<ResponseDataModel>, t: Throwable) {
-//                progressDialog.dismiss()
-//                Log.e("Failure","Error is ${t.localizedMessage}")
-//                showToast("Some Error Occurred while fetching data")
-//            }
-//        })
     }
 
     private fun setupUI() {
@@ -210,7 +212,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager
 
         //attaching adapter to recycler view
-        itemAdapter = ItemAdapter(this,newsList)
+        itemAdapter = ItemAdapter(this,newsList , this)
         recyclerView.adapter = itemAdapter
     }
 
@@ -246,5 +248,12 @@ class MainActivity : AppCompatActivity() {
         progressDialog.setTitle("Loading..")
         progressDialog.setMessage("Please wait while we fetch data..")
         progressDialog.setCancelable(false)
+    }
+
+    override fun onItemClicked(position: Int, url_adapter: String) {
+        val intent = Intent(this , WebActivity::class.java)
+        intent.putExtra("url_news" , url_adapter)
+        //showToast("sending url is $url_adapter")
+        startActivity(intent)
     }
 }
