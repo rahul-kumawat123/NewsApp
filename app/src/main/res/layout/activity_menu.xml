@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuActivity">
+    tools:context=".activity.MenuActivity"
+    android:background="@drawable/gradient">
 
     <SearchView
         android:id="@+id/search_news"
-        android:layout_width="250sp"
+        android:layout_width="@dimen/search_news_width"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="70sp"
+        android:layout_marginTop="@dimen/search_news_marginTop"
+        android:layout_marginRight="@dimen/search_news_marginRight"
         android:iconifiedByDefault="false"
-        android:queryHint="Search for News"
+        android:textStyle="bold"
+        android:queryHint="@string/queryHint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.351"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -23,10 +25,11 @@
 
     <Button
         android:id="@+id/searchBTN"
-        android:layout_width="110dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="50dp"
-        android:text="Search"
+        android:layout_width="@dimen/searchBtn_width"
+        android:layout_height="@dimen/searchBtn_height"
+        android:layout_marginTop="@dimen/searchBtn_marginTop"
+        android:text="@string/search"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.542"
@@ -39,12 +42,12 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:hint="LANGUAGE"
+        android:layout_marginStart="@dimen/textInputLayout_marginStart"
+        android:layout_marginLeft="@dimen/textInputLayout_marginLeft"
+        android:layout_marginTop="@dimen/textInputLayout_marginTop"
+        android:layout_marginEnd="@dimen/textInputLayout_marginEnd"
+        android:layout_marginRight="@dimen/textInputLayout_marginRight"
+        android:hint="@string/language"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +60,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:inputType="none"
-            android:text="English" />
+            android:text="@string/english"
+            android:textStyle="bold"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -65,12 +69,12 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:hint="CATEGORY"
+        android:layout_marginStart="@dimen/textInputLayout_marginStart"
+        android:layout_marginLeft="@dimen/textInputLayout_marginLeft"
+        android:layout_marginTop="@dimen/textInputLayout_marginTop"
+        android:layout_marginEnd="@dimen/textInputLayout_marginEnd"
+        android:layout_marginRight="@dimen/textInputLayout_marginRight"
+        android:hint="@string/category"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_news"
@@ -82,7 +86,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:inputType="none"
-            android:text="General" />
+            android:textStyle="bold"
+            android:text="@string/general" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -90,12 +95,12 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:hint="COUNTRY"
+        android:layout_marginStart="@dimen/textInputLayout_marginStart"
+        android:layout_marginLeft="@dimen/textInputLayout_marginLeft"
+        android:layout_marginTop="@dimen/textInputLayout_marginTop"
+        android:layout_marginEnd="@dimen/textInputLayout_marginEnd"
+        android:layout_marginRight="@dimen/textInputLayout_marginRight"
+        android:hint="@string/country"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout_Languages"
@@ -106,8 +111,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:textStyle="bold"
             android:inputType="none"
-            android:text="United States" />
+            android:text="@string/united_states" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -115,12 +121,12 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:hint="SOURCE"
+        android:layout_marginStart="@dimen/textInputLayout_marginStart"
+        android:layout_marginLeft="@dimen/textInputLayout_marginLeft"
+        android:layout_marginTop="@dimen/textInputLayout_marginTop"
+        android:layout_marginEnd="@dimen/textInputLayout_marginEnd"
+        android:layout_marginRight="@dimen/textInputLayout_marginRight"
+        android:hint="@string/source"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout_Countries"
@@ -132,7 +138,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:inputType="none"
-            android:text="BBC" />
+            android:textStyle="bold"
+            android:text="@string/bbc" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

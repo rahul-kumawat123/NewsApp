@@ -20,9 +20,4 @@ data class SavedNews(
     @ColumnInfo(name = "news_publishedTime")
     var news_time: String? = null,
 
-//    @ColumnInfo(name = "news_author")
-//    var news_author: String? = null ,
-//
-//    @ColumnInfo(name = "news_source")
-//    var news_source: String? = null
 )

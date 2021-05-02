@@ -7,11 +7,12 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="245dp"
-        app:cardElevation="8dp"
-        app:cardCornerRadius="50dp"
-        android:layout_margin="5dp"
+        android:layout_height="@dimen/cardView_height"
+        app:cardElevation="@dimen/cardView_elevation"
+        app:cardCornerRadius="@dimen/cardView_cornerradius"
+        android:layout_margin="@dimen/cardView_layout_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -21,16 +22,19 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/cardview_background">
 
             <TextView
                 android:id="@+id/newsTitleTV"
-                android:layout_width="336dp"
-                android:layout_height="36dp"
+                android:layout_width="@dimen/newsTitleTV_width"
+                android:layout_height="@dimen/newsTitleTV_height"
+                android:fontFamily="sans-serif"
                 android:gravity="center"
-                android:textSize="25sp"
-                android:fontFamily="sans-serif-black"
-                android:hint="News Title"
+                android:hint="@string/news_title"
+                android:textColor="@color/white"
+                android:textSize="@dimen/newsTitleTV_textSize"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -39,51 +43,53 @@
 
             <TextView
                 android:id="@+id/newsDescriptionTV"
-                android:layout_width="180dp"
-                android:layout_height="157dp"
-                android:hint="News Description"
+                android:layout_width="@dimen/newsDescriptionTV_width"
+                android:layout_height="@dimen/newsDescriptionTV_height"
                 android:gravity="center"
+                android:hint="@string/news_description"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.159"
+                app:layout_constraintHorizontal_bias="0.13"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/newsTitleTV"
-                app:layout_constraintVertical_bias="0.215" />
+                app:layout_constraintVertical_bias="0.258" />
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="134dp"
-                android:layout_height="156dp"
+                android:layout_width="@dimen/imageView_width"
+                android:layout_height="@dimen/imageView_height"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.377"
+                app:layout_constraintHorizontal_bias="0.491"
                 app:layout_constraintStart_toEndOf="@+id/newsDescriptionTV"
                 app:layout_constraintTop_toBottomOf="@+id/newsTitleTV"
-                app:layout_constraintVertical_bias="0.218"
-              />
+                app:layout_constraintVertical_bias="0.258" />
 
             <TextView
                 android:id="@+id/newsURL"
-                android:layout_width="58dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="170dp"
-                android:layout_marginRight="170dp"
+                android:layout_width="@dimen/newsURL_width"
+                android:layout_height="@dimen/newsURL_height"
+                android:layout_marginTop="@dimen/newsURL_marginTop"
+                android:layout_marginEnd="@dimen/newsURL_marginEnd"
+                android:layout_marginRight="@dimen/newsURL_marginRight"
+                android:textColor="@color/white"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.287"
+                app:layout_constraintHorizontal_bias="0.275"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/newsDescriptionTV" />
 
             <TextView
                 android:id="@+id/publishedTimeTV"
-                android:layout_width="198dp"
-                android:layout_height="12dp"
+                android:layout_width="@dimen/publishedTimeTV_width"
+                android:layout_height="@dimen/publishedTimeTV_height"
                 android:gravity="center"
-                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/publishedTimeTV_textSize"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.921"
+                app:layout_constraintHorizontal_bias="0.838"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView" />
         </androidx.constraintlayout.widget.ConstraintLayout>

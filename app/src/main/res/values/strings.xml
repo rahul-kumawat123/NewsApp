@@ -94,8 +94,23 @@
     </string-array>
 
     <string name="title_activity_web">MainActivity</string>
-    <string name="title_home">Home</string>
+    <string name="title_news">News</string>
     <string name="title_bookmarks">Bookmarks</string>
     <string name="title_notifications">Notifications</string>
+    <string name="queryHint">Search for News</string>
+    <string name="search">Search</string>
+    <string name="language">LANGUAGE</string>
+    <string name="english">English</string>
+    <string name="category">CATEGORY</string>
+    <string name="general">General</string>
+    <string name="country">COUNTRY</string>
+    <string name="united_states">United States</string>
+    <string name="source">SOURCE</string>
+    <string name="bbc">BBC</string>
+    <string name="sampletext">SampleText</string>
+    <string name="news_title">News Title</string>
+    <string name="news_description">News Description</string>
+    <string name="news_title">News Title</string>
+    <string name="news_description">News Description</string>
 
 </resources>

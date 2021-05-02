@@ -1,4 +1,4 @@
-package com.example.newsapp
+package com.example.newsapp.activity
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -6,16 +6,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.newsapp.R
 import com.example.newsapp.adapter.ItemAdapter
 import com.example.newsapp.model.DataModel
 import com.example.newsapp.model.ResponseDataModel
 import com.example.newsapp.rests.ApiClient
+import com.example.newsapp.showToast
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() , ItemAdapter.OnRecyclerViewItemClickListener {
+
     private val KEY = "e85ab53a52e9aa1ca6a1d01bf7bc3b23"
     private val LANGUAGE = "en"
     private lateinit var itemAdapter: ItemAdapter
@@ -27,49 +30,59 @@ class MainActivity : AppCompatActivity() , ItemAdapter.OnRecyclerViewItemClickLi
     private var countryBar : String = ""
     private var sourceBar : String = ""
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        val bundleSearch=intent
-        when {
-            bundleSearch.getBooleanExtra("checkKeyword",false) -> {
-                searchBar= bundleSearch.getStringExtra("keywords").toString()
-                createProgressDialog()
-                setupUI()
-                showSearchNews()
-            }
-            bundleSearch.getBooleanExtra("checkCategory" , false) -> {
-                categoryBar = bundleSearch.getStringExtra("categories").toString()
-                createProgressDialog()
-                setupUI()
-                showCategorisedNews()
-            }
-            bundleSearch.getBooleanExtra("checkLanguage" , false) -> {
-                languageBar = bundleSearch.getStringExtra("languages").toString()
-                createProgressDialog()
-                setupUI()
-                showLanguageWiseNews()
-            }
-            bundleSearch.getBooleanExtra("checkCountry" ,  false) ->{
-                countryBar = bundleSearch.getStringExtra("countries").toString()
-                createProgressDialog()
-                setupUI()
-                showCountryWiseNews()
-            }
-            bundleSearch.getBooleanExtra("checkSource" ,  false) ->{
-            sourceBar = bundleSearch.getStringExtra("sources").toString()
-            createProgressDialog()
-            setupUI()
-            showSourceWiseNews()
-            }
-            else -> {
-                createProgressDialog()
-                setupUI()
-                showNews()
-            }
+        try{
+            val bundleSearch=intent
+            when {
+                //keyword search
+                bundleSearch.getBooleanExtra("checkKeyword",false) -> {
+                    searchBar= bundleSearch.getStringExtra("keywords").toString()
+                    createProgressDialog()
+                    setupUI()
+                    showSearchNews()
+                }
+                //category search
+                bundleSearch.getBooleanExtra("checkCategory" , false) -> {
+                    categoryBar = bundleSearch.getStringExtra("categories").toString()
+                    createProgressDialog()
+                    setupUI()
+                    showCategorisedNews()
+                }
+                //language search
+                bundleSearch.getBooleanExtra("checkLanguage" , false) -> {
+                    languageBar = bundleSearch.getStringExtra("languages").toString()
+                    createProgressDialog()
+                    setupUI()
+                    showLanguageWiseNews()
+                }
+                //country search
+                bundleSearch.getBooleanExtra("checkCountry" ,  false) ->{
+                    countryBar = bundleSearch.getStringExtra("countries").toString()
+                    createProgressDialog()
+                    setupUI()
+                    showCountryWiseNews()
+                }
+                //sources search
+                bundleSearch.getBooleanExtra("checkSource" ,  false) ->{
+                    sourceBar = bundleSearch.getStringExtra("sources").toString()
+                    createProgressDialog()
+                    setupUI()
+                    showSourceWiseNews()
+                }
+                else -> {
+                    //live new search
+                    createProgressDialog()
+                    setupUI()
+                    showNews()
+                }
+             }
+        }
+        catch (e: Exception){
+            var error = e.printStackTrace()
+            showToast("Error is $error")
         }
 
         floatingActionButton.setOnClickListener {
@@ -82,7 +95,6 @@ class MainActivity : AppCompatActivity() , ItemAdapter.OnRecyclerViewItemClickLi
         progressDialog.show()
 
         val call = ApiClient.getClient.getSourceData(KEY, LANGUAGE , sourceBar )
-        //Log.i("ApiClient" , call.toString())
         call.enqueue(object : Callback<ResponseDataModel>{
             override fun onResponse(
                 call: Call<ResponseDataModel>,
@@ -108,7 +120,6 @@ class MainActivity : AppCompatActivity() , ItemAdapter.OnRecyclerViewItemClickLi
         progressDialog.show()
 
         val call = ApiClient.getClient.getCountryData(KEY , countryBar )
-        //Log.i("ApiClient" , call.toString())
         call.enqueue(object : Callback<ResponseDataModel>{
             override fun onResponse(
                 call: Call<ResponseDataModel>,
@@ -134,7 +145,6 @@ class MainActivity : AppCompatActivity() , ItemAdapter.OnRecyclerViewItemClickLi
          progressDialog.show()
 
         val call = ApiClient.getClient.getLanguageData(KEY , languageBar )
-        //Log.i("ApiClient" , call.toString())
         call.enqueue(object : Callback<ResponseDataModel>{
             override fun onResponse(
                 call: Call<ResponseDataModel>,
@@ -160,7 +170,6 @@ class MainActivity : AppCompatActivity() , ItemAdapter.OnRecyclerViewItemClickLi
         progressDialog.show()
 
         val call = ApiClient.getClient.getCategorisedData(KEY , "en" , categoryBar )
-        //Log.i("ApiClient" , call.toString())
         call.enqueue(object : Callback<ResponseDataModel>{
             override fun onResponse(
                 call: Call<ResponseDataModel>,
@@ -217,12 +226,12 @@ class MainActivity : AppCompatActivity() , ItemAdapter.OnRecyclerViewItemClickLi
         recyclerView.adapter = itemAdapter
     }
 
+
     private fun showNews() {
 
         progressDialog.show()
 
-        val call = ApiClient.getClient.getData(KEY, LANGUAGE )
-        //Log.i("ApiClient" , call.toString())
+        val call = ApiClient.getClient.getData(KEY, LANGUAGE  , "us")
         call.enqueue(object : Callback<ResponseDataModel>{
             override fun onResponse(
                 call: Call<ResponseDataModel>,
@@ -263,8 +272,6 @@ class MainActivity : AppCompatActivity() , ItemAdapter.OnRecyclerViewItemClickLi
             putExtra("url_news" , url_adapter)
             putExtra("title_news" , title_adapter)
             putExtra("desc_news" , desc_adapter)
-//            putExtra("author_news" , author_adapter )
-//            putExtra("source_news" , source_adapter)
             putExtra("time_news" , time_adapter)
         }
         //showToast("sending title is $title_adapter")

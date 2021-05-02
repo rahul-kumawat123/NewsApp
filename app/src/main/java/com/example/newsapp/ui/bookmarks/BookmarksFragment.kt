@@ -33,10 +33,6 @@ class BookmarksFragment : Fragment() {
         bookmarksViewModel =
                 ViewModelProvider(this).get(BookmarksViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_bookmarks, container, false)
-//        val textView: TextView = root.findViewById(R.id.text_bookmarks)
-//        bookmarksViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
         return root
     }
 

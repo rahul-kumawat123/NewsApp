@@ -7,6 +7,7 @@
     tools:context=".ui.bookmarks.BookmarksFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:background="@drawable/gradient"
         android:id="@+id/recyclerViewSavedNews"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

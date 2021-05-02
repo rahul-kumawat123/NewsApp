@@ -1,4 +1,4 @@
-package com.example.newsapp
+package com.example.newsapp.activity
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -9,6 +9,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.newsapp.R
+import com.example.newsapp.showToast
 
 class WebActivity : AppCompatActivity() {
 
@@ -24,8 +26,6 @@ class WebActivity : AppCompatActivity() {
         val urlNews = intent.getStringExtra("url_news")
         val titleNews = intent.getStringExtra("title_news")
         val descNews = intent.getStringExtra("desc_news")
-//        val authorNews = intent.getStringExtra("author_news")
-//        val sourceNews = intent.getStringExtra("source_news")
         val timeNews = intent.getStringExtra("time_news")
         showToast("title news variable is $titleNews")
 
@@ -33,8 +33,6 @@ class WebActivity : AppCompatActivity() {
         editor.putString("news_url_key" , urlNews)
         editor.putString("news_title_key" , titleNews)
         editor.putString("news_desc_key" , descNews)
-//        editor.putString("news_author_key", authorNews)
-//        editor.putString("news_source_key" , sourceNews)
         editor.putString("news_time_key" , timeNews)
         editor.apply()
         editor.commit()

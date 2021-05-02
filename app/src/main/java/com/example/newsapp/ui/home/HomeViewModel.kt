@@ -11,17 +11,14 @@ import java.util.concurrent.Executors
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
-//    private val _text = MutableLiveData<String>().apply {
-//        value = "This is home Fragment"
-//    }
-//    val text: LiveData<String> = _text
+
 
     private val context = getApplication<Application>().applicationContext
     var savedData: LiveData<List<SavedNews>> = MutableLiveData()
     private val roomDatabaseBuilder = RoomDatabaseBuilder.getInstance(context)
 
     init {
-        // to getAllUserDetails()
+        // to getAllSavedNewsDetails()
         savedData = roomDatabaseBuilder.savedNewsDao().getAllNews()
 
     }
@@ -32,8 +29,6 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                 SavedNews(
                     news_title = savedNews.news_title,
                     news_desc = savedNews.news_desc,
-//                    news_author = savedNews.news_author,
-//                    news_source = savedNews.news_source,
                     news_time = savedNews.news_time
                 )
             )

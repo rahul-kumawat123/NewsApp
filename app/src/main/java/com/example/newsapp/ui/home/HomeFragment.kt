@@ -40,10 +40,7 @@ class HomeFragment : Fragment() {
         val urlData : String? = pref.getString("news_url_key" , null)
         val titleData: String? = pref.getString("news_title_key" , null)
         val descriptionData: String? = pref.getString("news_desc_key" , null)
-//        val authorData: String? = pref.getString("news_author_key" , null)
-//        val sourceData: String? = pref.getString("news_source_key" , null)
         val timeData: String? = pref.getString("news_time_key" , null)
-
         //context?.showToast("url is $urlData")
 
         //initializing webView
@@ -77,8 +74,6 @@ class HomeFragment : Fragment() {
                         SavedNews(
                             news_title = titleData.toString(),
                             news_desc = descriptionData,
-//                            news_author = authorData,
-//                            news_source = sourceData,
                             news_time = timeData
                         )
                     )

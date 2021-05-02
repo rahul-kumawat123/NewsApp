@@ -11,16 +11,14 @@ interface ApiInterface {
     fun getData(
         @Query("access_key") key : String,
         @Query("languages") lang: String,
-
+        @Query("countries") country: String
     ):retrofit2.Call<ResponseDataModel>
-
 
     @GET("news")
     fun getSearchData(
         @Query("access_key") key : String,
         @Query("languages") lang: String,
         @Query("keywords") keywords : String
-
     ):retrofit2.Call<ResponseDataModel>
 
     @GET("news")
@@ -28,21 +26,18 @@ interface ApiInterface {
             @Query("access_key") key : String,
             @Query("languages") lang: String,
             @Query("categories") categories: String
-
     ):retrofit2.Call<ResponseDataModel>
 
     @GET("news")
     fun getLanguageData(
             @Query("access_key") key : String,
             @Query("languages") lang: String,
-
     ):retrofit2.Call<ResponseDataModel>
 
     @GET("news")
     fun getCountryData(
             @Query("access_key") key : String,
             @Query("countries") country: String
-
     ):retrofit2.Call<ResponseDataModel>
 
     @GET("news")
@@ -50,6 +45,5 @@ interface ApiInterface {
         @Query("access_key") key : String,
         @Query("languages") lang: String,
         @Query("sources") source: String
-
-        ):retrofit2.Call<ResponseDataModel>
+    ):retrofit2.Call<ResponseDataModel>
 }

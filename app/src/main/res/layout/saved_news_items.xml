@@ -6,11 +6,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_savedNews"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        app:cardElevation="8dp"
-        app:cardCornerRadius="50dp"
-        android:layout_margin="5dp"
+        android:layout_height="@dimen/cardView_savedNews_height"
+        app:cardElevation="@dimen/cardView_elevation"
+        app:cardCornerRadius="@dimen/cardView_cornerradius"
+        android:layout_margin="@dimen/cardView_layout_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -25,12 +26,12 @@
 
             <TextView
                 android:id="@+id/savedNewsTitleTV"
-                android:layout_width="336dp"
-                android:layout_height="36dp"
-                android:gravity="center"
-                android:textSize="25sp"
+                android:layout_width="@dimen/savedNewsTitleTV_width"
+                android:layout_height="@dimen/savedNewsTitleTV_height"
                 android:fontFamily="sans-serif-black"
-                android:hint="News Title"
+                android:gravity="center"
+                android:hint="@string/news_title"
+                android:textSize="@dimen/savedNewsTitleTV_textSize"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -39,26 +40,26 @@
 
             <TextView
                 android:id="@+id/savedNewsDescriptionTV"
-                android:layout_width="313dp"
-                android:layout_height="88dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="16dp"
+                android:layout_width="@dimen/savedNewsDescriptionTV_width"
+                android:layout_height="@dimen/savedNewsDescriptionTV_height"
+                android:layout_marginTop="@dimen/savedNewsDescriptionTV_marginTop"
+                android:layout_marginBottom="@dimen/savedNewsDescriptionTV_marginBottom"
                 android:gravity="center"
-                android:hint="News Description"
+                android:hint="@string/news_description"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.505"
+                app:layout_constraintHorizontal_bias="0.51"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/savedNewsTitleTV"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.148" />
 
             <TextView
                 android:id="@+id/savedNewsPublishedTimeTV"
-                android:layout_width="232dp"
-                android:layout_height="19dp"
-                android:layout_marginTop="100dp"
+                android:layout_width="@dimen/savedNewsPublishedTimeTV_width"
+                android:layout_height="@dimen/savedNewsPublishedTimeTV_height"
+                android:layout_marginTop="@dimen/savedNewsPublishedTimeTV_marginTop"
                 android:gravity="center"
-                android:textSize="15sp"
+                android:textSize="@dimen/savedNewsPublishedTimeTV_textSize"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

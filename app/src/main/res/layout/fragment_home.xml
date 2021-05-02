@@ -10,7 +10,7 @@
         android:id="@+id/webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/webView_marginTop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,12 +18,13 @@
 
     <ImageView
         android:id="@+id/bookmark_click"
-        android:layout_width="64dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_width="@dimen/bookmark_click_width"
+        android:layout_height="@dimen/bookmark_click_height"
+        android:layout_marginTop="@dimen/bookmark_click_marginTop"
+        android:layout_marginEnd="@dimen/bookmark_click_marginEnd"
+        android:layout_marginRight="@dimen/bookmark_click_marginRight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_select_bookmark" />
+        app:srcCompat="@drawable/ic_select_bookmark"
+        tools:ignore="VectorDrawableCompat" />
 </androidx.constraintlayout.widget.ConstraintLayout>

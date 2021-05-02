@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -21,11 +21,11 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
-        android:layout_width="57dp"
-        android:layout_height="58dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="36dp"
+        android:layout_width="@dimen/floatingActionBtn_width"
+        android:layout_height="@dimen/floatingActionBtn_height"
+        android:layout_marginEnd="@dimen/floatingActionBtn_marginEnd"
+        android:layout_marginRight="@dimen/floatingActionBtn_marginRight"
+        android:layout_marginBottom="@dimen/floatingActionBtn_marginBottom"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

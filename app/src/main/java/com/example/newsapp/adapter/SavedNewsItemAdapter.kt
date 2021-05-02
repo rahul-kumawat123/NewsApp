@@ -18,8 +18,6 @@ class SavedNewsItemAdapter(private val context: BookmarksFragment ,
 
         val savedNewsTitle: TextView = view.findViewById(R.id.savedNewsTitleTV)
         val savedNewsDescription: TextView = view.findViewById(R.id.savedNewsDescriptionTV)
-//        val savedNewsAuthor: TextView = view.findViewById(R.id.savedNewsAuthorTV)
-//        val savedNewsSource: TextView = view.findViewById(R.id.savedNewsSourceTV)
         val savedNewsTime: TextView = view.findViewById(R.id.savedNewsPublishedTimeTV)
     }
 
@@ -32,8 +30,6 @@ class SavedNewsItemAdapter(private val context: BookmarksFragment ,
         holder.apply {
             savedNewsTitle.text = newsDataset[position].news_title
             savedNewsDescription.text = newsDataset[position].news_desc
-//            savedNewsAuthor.text = newsDataset[position].news_author
-//            savedNewsSource.text = newsDataset[position].news_source
             savedNewsTime.text = newsDataset[position].news_time
         }
     }

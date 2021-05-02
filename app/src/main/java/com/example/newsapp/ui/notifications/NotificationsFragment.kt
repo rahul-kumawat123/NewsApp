@@ -10,6 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.newsapp.R
 
+/**
+ *          Further Work
+ *  This Notifications Fragment can be used as a way to notify user if his/her saved item gets updated.
+ */
+
 class NotificationsFragment : Fragment() {
 
     private lateinit var notificationsViewModel: NotificationsViewModel
