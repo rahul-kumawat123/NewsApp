@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() , ItemAdapter.OnRecyclerViewItemClickLi
         }
 
         floatingActionButton.setOnClickListener {
-            showToast("Floating Button Clicked")
+           // showToast("Floating Button Clicked")
             startActivity(Intent(this , MenuActivity::class.java))
         }
     }

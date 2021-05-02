@@ -27,7 +27,7 @@ class WebActivity : AppCompatActivity() {
         val titleNews = intent.getStringExtra("title_news")
         val descNews = intent.getStringExtra("desc_news")
         val timeNews = intent.getStringExtra("time_news")
-        showToast("title news variable is $titleNews")
+        //showToast("title news variable is $titleNews")
 
         val editor : SharedPreferences.Editor = sharedPreferences.edit()
         editor.putString("news_url_key" , urlNews)
