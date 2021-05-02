@@ -1,9 +1,11 @@
 package com.example.newsapp.activity
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.newsapp.R
@@ -31,6 +33,7 @@ class MenuActivity : AppCompatActivity() {
             if(customSearch.isNullOrBlank()){
                 showToast("Please enter Valid text in Search Field")
             }else {
+                closeKeyBoard()
                 Toast.makeText(this, customSearch, Toast.LENGTH_SHORT).show()
                 val intentSearchBar = Intent(this, MainActivity::class.java)
                 intentSearchBar.putExtra("keywords", customSearch)
@@ -38,6 +41,14 @@ class MenuActivity : AppCompatActivity() {
                 startActivity(intentSearchBar)
             }
         })
+    }
+
+    private fun closeKeyBoard() {
+        val view = this.currentFocus
+        if (view != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
     override fun onResume() {
